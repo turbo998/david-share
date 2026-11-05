@@ -9,14 +9,14 @@ jobs:
     steps:
       - name: Push subrepos
         env:
-          MOE_DEPLOY_KEY: ${{ secrets.MOE_DEPLOY_KEY }}
-          AIPC_DEPLOY_KEY: ${{ secrets.AIPC_DEPLOY_KEY }}
+          MOE_DEPLOY_KEY_B64: ${{ secrets.MOE_DEPLOY_KEY_B64 }}
+          AIPC_DEPLOY_KEY_B64: ${{ secrets.AIPC_DEPLOY_KEY_B64 }}
         run: |
           mkdir -p ~/.ssh
           ssh-keyscan github.com >> ~/.ssh/known_hosts
-          printf "%s\n" "$MOE_DEPLOY_KEY" > ~/.ssh/moe_key
+          echo "$MOE_DEPLOY_KEY_B64" | base64 -d > ~/.ssh/moe_key
           chmod 600 ~/.ssh/moe_key
-          printf "%s\n" "$AIPC_DEPLOY_KEY" > ~/.ssh/aipc_key
+          echo "$AIPC_DEPLOY_KEY_B64" | base64 -d > ~/.ssh/aipc_key
           chmod 600 ~/.ssh/aipc_key
           git init --bare /tmp/sync
           cd /tmp/sync
