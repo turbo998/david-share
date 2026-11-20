@@ -89,7 +89,7 @@ MarkupSafe==2.1.5
 marshmallow==3.21.3
 matplotlib-inline==0.1.7
 mdurl==0.1.2
-mistune==3.0.2
+mistune==3.3.4
 mkl==2021.4.0
 mmh3==4.1.0
 monotonic==1.6
